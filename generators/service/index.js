@@ -202,7 +202,7 @@ module.exports = class ServiceGenerator extends Generator {
       // Copy the model
       this.fs.copyTpl(
         this.srcTemplatePath('model', modelTpl),
-        this.srcDestinationPath(this.libDirectory, 'models', context.modelName),
+        this.srcDestinationPath(...serviceFolder, context.modelName),
         context
       );
     }

@@ -2,7 +2,7 @@
 import { ServiceAddons } from '@feathersjs/feathers';
 import { Application } from '<%= relativeRoot %>declarations';
 import { <%= className %> } from './<%= kebabName %>.class';<% if(modelName) { %>
-import createModel from '<%= relativeRoot %>models/<%= modelName %>';<% } %>
+import createModel from './<%= modelName %>';<% } %>
 import hooks from './<%= kebabName %>.hooks';
 
 // Add this service to the service type index
