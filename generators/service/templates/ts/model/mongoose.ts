@@ -4,14 +4,24 @@
 // for more of what you can do here.
 import { Application } from '../declarations';
 import { Model, Mongoose } from 'mongoose';
+import { createMongooseSchema } from 'convert-json-schema-to-mongoose';
+
+const refs = {};
+const schema = {
+  type: 'object',
+  required: ['text'],
+
+  properties: {
+    text: { type: 'string' }
+  }
+};
 
 export default function (app: Application): Model<any> {
   const modelName = '<%= camelName %>';
   const mongooseClient: Mongoose = app.get('mongooseClient');
   const { Schema } = mongooseClient;
-  const schema = new Schema({
-    text: { type: String, required: true }
-  }, {
+  const translatedSchema = createMongooseSchema(refs, schema); 
+  const mongooseSchema = new Schema(translatedSchema, {
     timestamps: true
   });
 
@@ -20,5 +30,5 @@ export default function (app: Application): Model<any> {
   if (mongooseClient.modelNames().includes(modelName)) {
     (mongooseClient as any).deleteModel(modelName);
   }
-  return mongooseClient.model<any>(modelName, schema);
+  return mongooseClient.model<any>(modelName, mongooseSchema);
 }

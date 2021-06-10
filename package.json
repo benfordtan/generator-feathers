@@ -47,6 +47,7 @@
   },
   "dependencies": {
     "@feathersjs/tools": "^0.2.3",
+    "convert-json-schema-to-mongoose": "^0.3.2",
     "lodash": "^4.17.21",
     "node-dir": "^0.1.17",
     "randomstring": "^1.1.5",
