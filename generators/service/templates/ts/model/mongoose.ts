@@ -19,9 +19,8 @@ const schema = {
 export default function (app: Application): Model<any> {
   const modelName = '<%= camelName %>';
   const mongooseClient: Mongoose = app.get('mongooseClient');
-  const { Schema } = mongooseClient;
   const translatedSchema = createMongooseSchema(refs, schema); 
-  const mongooseSchema = new Schema(translatedSchema, {
+  const mongooseSchema = new mongooseClient.Schema(translatedSchema, {
     timestamps: true
   });
 
