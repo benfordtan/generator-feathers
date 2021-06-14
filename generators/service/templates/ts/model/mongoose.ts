@@ -3,18 +3,11 @@
 // See http://mongoosejs.com/docs/models.html
 // for more of what you can do here.
 import { Application } from '../../declarations';
+import schema from "./<%= kebabName %>.schema";
 import { Model, Mongoose } from 'mongoose';
 import { createMongooseSchema } from 'convert-json-schema-to-mongoose';
 
 const refs = {};
-const schema = {
-  type: 'object',
-  required: ['text'],
-
-  properties: {
-    text: { type: 'string' }
-  }
-};
 
 export default function (app: Application): Model<any> {
   const modelName = '<%= camelName %>';

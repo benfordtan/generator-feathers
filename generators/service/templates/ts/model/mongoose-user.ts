@@ -3,24 +3,11 @@
 // See http://mongoosejs.com/docs/models.html
 // for more of what you can do here.
 import { Application } from '../../declarations';
+import schema from "./<%= kebabName %>.schema";
 import { Model, Mongoose } from 'mongoose';
-import {createMongooseSchema} from "convert-json-schema-to-mongoose/index";
+import { createMongooseSchema } from "convert-json-schema-to-mongoose/index";
 
 const refs = {};
-const schema = {
-  type: 'object',
-  required: ['password'],
-
-  properties: { 
-    <% if(authentication.strategies.indexOf('local') !== -1) { %>
-      email: { type: ['string', 'null'] },
-      password: { type: 'string' },
-    <% } %>
-    <% authentication.oauthProviders.forEach(provider => { %>
-      <%= provider %>Id: { type: 'string' },
-    <% }); %>
-  }
-};
 
 export default function (app: Application): Model<any> {
   const modelName = '<%= camelName %>';
