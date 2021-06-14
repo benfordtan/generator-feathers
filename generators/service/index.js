@@ -207,7 +207,8 @@ module.exports = class ServiceGenerator extends Generator {
       );
       this.fs.copyTpl(
         this.srcTemplatePath('schema', modelTpl),
-        this.srcDestinationPath(...serviceFolder, `${kebabName}.schema`)
+        this.srcDestinationPath(...serviceFolder, `${kebabName}.schema`),
+        context
       );
     }
 
