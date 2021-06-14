@@ -3,7 +3,7 @@
 // See http://mongoosejs.com/docs/models.html
 // for more of what you can do here.
 import { Application } from '../../declarations';
-import schema from "./<%= kebabName %>.schema";
+import schema from './<%= kebabName %>.schema';
 import { Model, Mongoose } from 'mongoose';
 import { createMongooseSchema } from 'convert-json-schema-to-mongoose';
 

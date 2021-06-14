@@ -1,9 +1,9 @@
 export default {
-  "type": "object",
-  "properties": {
-    "text": {
-      "type": "string"
+  'type': 'object',
+  'properties': {
+    'text': {
+      'type': 'string'
     }
   },
-  "required": ["text"]
+  'required': ['text']
 }
