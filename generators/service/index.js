@@ -15,7 +15,7 @@ module.exports = class ServiceGenerator extends Generator {
         type: 'list',
         name: 'adapter',
         message: 'What kind of service is it?',
-        default: 'nedb',
+        default: 'mongoose',
         choices: [
           { name: 'A custom service', value: 'generic' },
           { name: 'In Memory', value: 'memory' },
