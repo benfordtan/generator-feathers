@@ -1,4 +1,4 @@
-import {validateSchema} from 'feathers-hooks-common';
+import { validateSchema } from 'feathers-hooks-common';
 import ajv from 'ajv';
 import schema from './<%= kebabName %>.schema';
 
@@ -9,7 +9,11 @@ const create = Object.assign({}, base, {});
 const update = Object.assign({}, base, {});
 
 const patch = Object.assign({}, base, {});
-delete patch.required;
+
+const deleteRequired = (schema: any) => {
+  if(schema.required) delete schema.required
+}
+deleteRequired(patch);
 
 const validateCreate = (options?: any) => {
   return validateSchema(create, ajv, options);
