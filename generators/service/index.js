@@ -222,12 +222,12 @@ module.exports = class ServiceGenerator extends Generator {
       );
     }
     
-    const validationHookPath = this.srcDestinationPath(this.libDirectory, 'service', 'validation-hook');
+    const validationHookPath = this.srcDestinationPath(this.libDirectory, 'services', 'validation-hook');
     const requiresValidation = this.props.requiresValidation && !this.fs.exists(validationHookPath);
     if (requiresValidation) {
       this.fs.copyTpl(
         this.srcTemplatePath('validation-hook'),
-        this.srcDestinationPath(validationHookPath),
+        validationHookPath,
         context
       );
     }

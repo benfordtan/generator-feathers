@@ -1,7 +1,7 @@
 import Ajv from 'ajv'
 import { Unprocessable } from '@feathersjs/errors'
 
-export function compileSchema (schema, options = {}) {
+export function compileSchema (schema: any, options = {}) {
   const defaults = {
     allErrors: true
   }
@@ -17,10 +17,10 @@ export function compileSchema (schema, options = {}) {
   return initializeHook(validator)
 }
 
-function initializeHook (validator) {
-  return function (hook) {
+function initializeHook (validator: any) {
+  return function (hook: any) {
     return validator
-      .then((validate) => {
+      .then((validate: any) => {
         if (hook.data) {
           hook.params.validated = validate(hook.data)
           if (!hook.params.validated) {
