@@ -6,4 +6,4 @@ export default {
     }
   },
   'required': ['text']
-}
+};

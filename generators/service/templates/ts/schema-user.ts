@@ -6,4 +6,4 @@ export default {
     '<%= provider %>Id': { 'type': 'string' },<% }); %>
   },
   'required': ['password']
-}
+};
