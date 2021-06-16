@@ -11,8 +11,8 @@ const update = Object.assign({}, base, {});
 const patch = Object.assign({}, base, {});
 
 const deleteRequired = (schema: any) => {
-  if(schema.required) delete schema.required
-}
+  if(schema.required) delete schema.required;
+};
 deleteRequired(patch);
 
 const validateCreate = (options?: any) => {
