@@ -65,6 +65,12 @@ module.exports = class ServiceGenerator extends Generator {
         type: 'confirm',
         default: true,
         when: !!(this.defaultConfig.authentication && !props.authentication)
+      }, {
+        name: 'requiresValidation',
+        message: 'Does the service require validation?',
+        type: 'confirm',
+        default: true,
+        when: !props.validation
       }
     ];
 
@@ -212,6 +218,16 @@ module.exports = class ServiceGenerator extends Generator {
       this.fs.copyTpl(
         this.srcTemplatePath('schema', modelTpl),
         this.srcDestinationPath(...serviceFolder, `${kebabName}.schema`),
+        context
+      );
+    }
+    
+    const validationHookPath = this.srcDestinationPath(this.libDirectory, 'service', 'validation-hook');
+    const requiresValidation = this.props.requiresValidation && !this.fs.exists(validationHookPath);
+    if (requiresValidation) {
+      this.fs.copyTpl(
+        this.srcTemplatePath('validation-hook'),
+        this.srcDestinationPath(validationHookPath),
         context
       );
     }

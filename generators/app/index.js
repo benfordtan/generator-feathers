@@ -24,7 +24,8 @@ module.exports = class AppGenerator extends Generator {
       'helmet',
       'winston@^3.0.0',
       'cors',
-      'convert-json-schema-to-mongoose'
+      'convert-json-schema-to-mongoose',
+      'ajv'
     ];
 
     this.devDependencies = [
