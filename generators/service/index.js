@@ -221,16 +221,14 @@ module.exports = class ServiceGenerator extends Generator {
         this.srcDestinationPath(...serviceFolder, `${kebabName}.schema`),
         context
       );
-    }
-    
-    const validationHookPath = this.srcDestinationPath(this.libDirectory, 'services', 'validation-hook');
-    const requiresValidation = this.props.requiresValidation && !this.fs.exists(validationHookPath);
-    if (requiresValidation) {
-      this.fs.copyTpl(
-        this.srcTemplatePath('validation-hook'),
-        validationHookPath,
-        context
-      );
+      // Copy validation
+      if(this.props.requiresValidation) {
+        this.fs.copyTpl(
+          this.srcTemplatePath('validate'),
+          this.srcDestinationPath(...serviceFolder, `${kebabName}.validate`),
+          context
+        );
+      }
     }
 
     this.fs.copyTpl(
