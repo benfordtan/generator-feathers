@@ -85,6 +85,11 @@ module.exports = class ConnectionGenerator extends Generator {
       if (this.srcType === 'ts') {	
         this.devDependencies.push('@types/validator@^10.0.0');	
       }	
+    } else if (adapter === 'mongoose') {
+      this.dependencies.push('convert-json-schema-to-mongoose@^0.3.2');
+      if (this.srcType === 'ts') {
+        this.devDependencies.push('@types/lodash@^4.14.168');
+      }
     }
 
     switch (database) {
