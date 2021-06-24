@@ -3,6 +3,7 @@ import favicon from 'serve-favicon';
 import compress from 'compression';
 import helmet from 'helmet';
 import cors from 'cors';
+import swagger from 'feathers-swagger';
 
 import feathers from '@feathersjs/feathers';
 import configuration from '@feathersjs/configuration';
@@ -18,6 +19,8 @@ import appHooks from './app.hooks';
 import channels from './channels';
 import { HookContext as FeathersHookContext } from '@feathersjs/feathers';
 // Don't remove this comment. It's needed to format import lines nicely.
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const pack = require('../package.json');
 
 const app: Application = express(feathers());
 export type HookContext<T = any> = { app: Application } & FeathersHookContext<T>;
@@ -40,6 +43,18 @@ app.use('/', express.static(app.get('public')));
 <% if (hasProvider('rest')) { %>app.configure(express.rest());<% } %>
 <% if (hasProvider('socketio')) { %>app.configure(socketio());<% } %>
 <% if(hasProvider('primus')) { %>app.configure(primus({ transformer: 'websockets' }));<% } %>
+// Set up Swagger
+app.configure(swagger({
+  uiIndex: true,
+  specs: {
+    info: {
+      title: pack.name,
+      description: pack.description,
+      version: pack.version,
+    },
+    schemes: ['http', 'https'] // Optionally set the protocol schema used (sometimes required when host on https)
+  }
+}));
 // Configure other middleware (see `middleware/index.ts`)
 app.configure(middleware);
 // Set up our services (see `services/index.ts`)
